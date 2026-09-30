@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parole Fluttuanti</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Area in cui fluttuano le parole (quella che vede la classe) -->
+  <main id="campo" aria-label="Parole fluttuanti"></main>
+
+  <!-- Messaggi di errore/avviso sul caricamento dei contenuti -->
+  <div id="avviso" role="alert" hidden></div>
+
+  <!-- Pannello operatore: si nasconde con H -->
+  <div id="pannello">
+    <button id="btn-pausa" type="button" title="Barra spaziatrice">⏸ Pausa</button>
+    <button id="btn-lento" type="button" title="Tasto −">− Lento</button>
+    <span id="velocita" aria-live="polite">Velocità 1×</span>
+    <button id="btn-veloce" type="button" title="Tasto +">+ Veloce</button>
+    <button id="btn-mescola" type="button" title="Tasto R">↻ Rimescola</button>
+    <button id="btn-schermo" type="button" title="Tasto F">⛶ Schermo intero</button>
+    <label class="btn-file" title="Carica un file JSON di parole">
+      📂 Carica JSON
+      <input id="file-json" type="file" accept=".json,application/json">
+    </label>
+    <span class="scorciatoie">Clic su una parola = evidenzia · H = nascondi pannello</span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

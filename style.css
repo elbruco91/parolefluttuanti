@@ -1,0 +1,129 @@
+/* ===== Colori e misure principali: modificali qui ===== */
+:root {
+  --sfondo: #0b1220;
+  --sfondo-alone: #16233d;
+  --testo: #f2f5fa;
+  --accento: #ffd166;
+  --pannello: rgba(10, 16, 30, 0.88);
+  --bordo-pannello: #33415e;
+  /* Dimensione delle parole: minimo, ideale (in base alla larghezza schermo), massimo */
+  --dimensione-parola: clamp(1.6rem, 3.6vw, 4.5rem);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 40%, var(--sfondo-alone), var(--sfondo) 70%);
+  background-color: var(--sfondo);
+  color: var(--testo);
+  font-family: "Segoe UI", system-ui, -apple-system, Roboto, Arial, sans-serif;
+}
+
+#campo {
+  position: fixed;
+  inset: 0;
+}
+
+/* ===== Singola parola ===== */
+.parola {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  font-size: var(--dimensione-parola);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.1;
+  padding: 0.15em 0.35em;
+  border: 3px solid transparent;
+  border-radius: 0.3em;
+  cursor: pointer;
+  user-select: none;
+  will-change: transform;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  transition: font-size 0.25s, background-color 0.25s, border-color 0.25s;
+}
+
+/* Varianti di tono, per dare profondità senza affidare significato al colore */
+.parola.tono-1 { color: #f2f5fa; }
+.parola.tono-2 { color: #9fd3ff; }
+.parola.tono-3 { color: #c9b8ff; }
+.parola.tono-4 { color: #9ff0d0; }
+
+/* Parola evidenziata: più grande, bordo, sfondo pieno e indicatore ▶ (non solo colore) */
+.parola.evidenziata {
+  /* 1,5 volte più grande, ma mai più larga dello schermo (telefoni) */
+  font-size: min(calc(var(--dimensione-parola) * 1.5), 7.5vw);
+  color: #111;
+  background-color: var(--accento);
+  border-color: #fff;
+  text-shadow: none;
+  z-index: 10;
+}
+.parola.evidenziata::before { content: "▶ "; }
+
+/* ===== Pannello operatore ===== */
+#pannello {
+  position: fixed;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  max-width: calc(100% - 24px);
+  padding: 8px 12px;
+  background: var(--pannello);
+  border: 1px solid var(--bordo-pannello);
+  border-radius: 12px;
+  font-size: 0.95rem;
+  z-index: 100;
+}
+#pannello.nascosto { display: none; }
+
+#pannello button,
+.btn-file {
+  font: inherit;
+  color: var(--testo);
+  background: #1e2a44;
+  border: 1px solid var(--bordo-pannello);
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+#pannello button:hover,
+.btn-file:hover { background: #2a3a5c; }
+#pannello button:focus-visible,
+.btn-file:focus-within { outline: 2px solid var(--accento); outline-offset: 2px; }
+
+.btn-file input { display: none; }
+
+#velocita { min-width: 7em; text-align: center; }
+.scorciatoie { opacity: 0.7; font-size: 0.85rem; }
+
+/* ===== Avviso errori contenuti ===== */
+#avviso {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: min(90%, 720px);
+  padding: 10px 16px;
+  background: #3a1d1d;
+  border: 2px solid #ff8a8a;
+  border-radius: 10px;
+  font-size: 1rem;
+  z-index: 200;
+}
+#avviso::before { content: "⚠ "; }
+
+/* Su telefono: pannello più compatto */
+@media (max-width: 600px) {
+  #pannello { font-size: 0.85rem; gap: 6px; }
+  .scorciatoie { display: none; }
+}
