@@ -12,7 +12,9 @@ const FILE_CONTENUTI = "contenuti/parole.json";
 const PAROLE_DI_RISERVA = [
   "Algoritmo", "IA", "IA Generativa", "LLM", "IA Agentica", "Allucinazione",
   "Bias Algoritmico", "Prompt", "Deep Learning", "Machine Learning",
-  "Rete Neurale", "Token"
+  "Rete Neurale", "Token",
+  // Parole intruse (non c'entrano con l'AI)
+  "Spoofing", "Firewall", "Cache", "Svestad"
 ];
 
 // Velocità di base in pixel al secondo (moltiplicata dal fattore velocità)
